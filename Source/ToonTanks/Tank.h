@@ -21,8 +21,7 @@ public:
 
 	ATank();
 
-	UFUNCTION()
-	void Move(const FInputActionValue& Value);
+	
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -33,6 +32,16 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float Speed = 200.f;
+
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"), Category = "Movement")
+	float TurnRate = 200.f;
+
+	UFUNCTION()
+	void Move(const FInputActionValue& Value);
+
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
