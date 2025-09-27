@@ -26,4 +26,7 @@ private:
 	class ATank* Tank;
 
 	float StartDelay = 3.f;
+
+	void HandleGameStart();
+
 };

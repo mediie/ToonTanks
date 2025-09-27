@@ -43,8 +43,6 @@ void ATank::Tick(float DeltaTime)
 		TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
 		
 		RotateTurret(HitResult.ImpactPoint);
-
-		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 25.f, 12, FColor::Green, false, -1.f);
 	}
 }
 
@@ -72,13 +70,10 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ATank::Move(const FInputActionValue& Value)
 {
-
 		FVector2D InputValue = Value.Get<FVector2D>();
 		FVector DeltaLocation = FVector::ZeroVector;
 		DeltaLocation.X = InputValue.X * Speed * UGameplayStatics::GetWorldDeltaSeconds(this);
-		ATank::AddActorLocalOffset(DeltaLocation, true); //true to block if colliding
-
-
+		ATank::AddActorLocalOffset(DeltaLocation, true); //true to block if colliding		
 }
 void ATank::Turn(const FInputActionValue& Value)
 {
