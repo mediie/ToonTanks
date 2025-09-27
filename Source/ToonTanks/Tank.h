@@ -23,6 +23,9 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
+	
+	virtual void Tick(float DeltaTime) override;
+
 
 
 private:
@@ -41,6 +44,8 @@ private:
 
 	void Move(const FInputActionValue& Value);
 	void Turn(const FInputActionValue& Value);
+
+	APlayerController* PlayerControllerRef;
 
 
 

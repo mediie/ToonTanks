@@ -5,6 +5,9 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
+#include "Engine/HitResult.h"
+
 
 
 
@@ -21,6 +24,8 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
+	PlayerControllerRef = Cast<APlayerController>(GetController());
+
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller)) {
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer())) {
 			Subsystem->AddMappingContext(InputMappingContext, 0);
@@ -28,6 +33,22 @@ void ATank::BeginPlay()
 	}
 }
 
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (PlayerControllerRef)
+	{
+		FHitResult HitResult;
+		PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+		
+		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 25.f, 12, FColor::Green, false, -1.f);
+	}
+		
+
+
+
+}
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -46,27 +67,21 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::Move(const FInputActionValue& Value)
 {
 
-	if (Controller) 
-	{
-
 		FVector2D InputValue = Value.Get<FVector2D>();
 		FVector DeltaLocation = FVector::ZeroVector;
 		DeltaLocation.X = InputValue.X * Speed * UGameplayStatics::GetWorldDeltaSeconds(this);
 		ATank::AddActorLocalOffset(DeltaLocation, true); //true to block if colliding
 
-		UE_LOG(LogTemp, Warning, TEXT("x-Axis Value: %f"), InputValue.X); 
-	}
+
 }
 void ATank::Turn(const FInputActionValue& Value)
 {
 		FVector2D InputValue = Value.Get<FVector2D>();
 
-	if (Controller)
-	{	
+		
 		FRotator DeltaRotation = FRotator::ZeroRotator;
 		DeltaRotation.Yaw = InputValue.X * TurnRate * UGameplayStatics::GetWorldDeltaSeconds(this);
 		ATank::AddActorLocalRotation(DeltaRotation, true); //true to block if colliding
 
-		UE_LOG(LogTemp, Warning, TEXT("Rotation x-Axis Value: %f"), InputValue.X);
-	}
+
 }
