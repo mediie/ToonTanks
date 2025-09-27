@@ -19,9 +19,12 @@ public:
 
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	
 
+	void RotateTurret(FVector LookAtTarget);
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* TurretMesh;
 
 
 private:
@@ -29,8 +32,7 @@ private:
 	class UCapsuleComponent* CapsuleComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* BaseMesh;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* TurretMesh;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
 
