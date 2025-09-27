@@ -22,6 +22,7 @@ protected:
 	
 
 	void RotateTurret(FVector LookAtTarget);
+	void Fire();
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* TurretMesh;

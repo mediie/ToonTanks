@@ -46,10 +46,6 @@ void ATank::Tick(float DeltaTime)
 
 		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 25.f, 12, FColor::Green, false, -1.f);
 	}
-		
-
-
-
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -62,7 +58,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		// Bind the move action
 		EnhancedInputComponent->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ATank::Move);
 		EnhancedInputComponent->BindAction(IA_Turn, ETriggerEvent::Triggered, this, &ATank::Turn);
-
+		EnhancedInputComponent->BindAction(IA_Fire, ETriggerEvent::Triggered, this, &ATank::Fire);
 	}
 }
 
@@ -84,6 +80,4 @@ void ATank::Turn(const FInputActionValue& Value)
 		FRotator DeltaRotation = FRotator::ZeroRotator;
 		DeltaRotation.Yaw = InputValue.X * TurnRate * UGameplayStatics::GetWorldDeltaSeconds(this);
 		ATank::AddActorLocalRotation(DeltaRotation, true); //true to block if colliding
-
-
 }
