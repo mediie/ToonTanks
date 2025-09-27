@@ -28,6 +28,8 @@ public:
 
 	void HandleDestruction();
 
+	bool bIsAlive = true;
+
 	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
 
 private:
