@@ -21,6 +21,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
+
 private:
 	class AToonTanksPlayerController* ToonTanksPlayerController;
 	class ATank* Tank;
