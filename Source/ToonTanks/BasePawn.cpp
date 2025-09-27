@@ -26,6 +26,10 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
+void ABasePawn::HandleDestruction()
+{
+	//todo: visual/sound effects
+}
 
 
 // Called every frame

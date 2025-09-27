@@ -26,7 +26,9 @@ public:
 	
 	virtual void Tick(float DeltaTime) override;
 
+	void HandleDestruction();
 
+	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
@@ -45,7 +47,7 @@ private:
 	void Move(const FInputActionValue& Value);
 	void Turn(const FInputActionValue& Value);
 
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 
 
 
