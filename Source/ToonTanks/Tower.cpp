@@ -55,6 +55,4 @@ void ATower::CheckFireCondition()
 	{
 		Fire();
 	}
-
-
 }

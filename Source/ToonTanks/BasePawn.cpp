@@ -70,4 +70,20 @@ void ABasePawn::Fire()
 	Projectile->SetOwner(this);
 }
 
+void ABasePawn::FireSpecial()
+{
+	if (!CanFireSpecial() || !SpecialProjectileClass || !ProjectileSpawnPoint)
+	{
+		return;
+	}
+
+	const float Time = GetWorld()->GetTimeSeconds();
+	if (Time - LastSpecialFireTime < SpecialCooldown) return;
+
+	const FTransform SpawnTransform = ProjectileSpawnPoint->GetComponentTransform();
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(SpecialProjectileClass, SpawnTransform);
+
+	LastSpecialFireTime = Time;
+}
+
 

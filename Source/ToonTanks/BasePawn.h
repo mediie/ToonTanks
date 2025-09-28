@@ -25,7 +25,20 @@ protected:
 
 	void RotateTurret(FVector LookAtTarget);
 	void Fire();
-	
+
+	virtual bool CanFireSpecial() const { return true; }
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void FireSpecial();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class AProjectile> SpecialProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	float SpecialCooldown = 2.f;
+
+
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCapsuleComponent* CapsuleComp;
@@ -50,6 +63,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TSubclassOf<UCameraShakeBase> DeathCameraShakeClass;
 
+	float LastSpecialFireTime = -FLT_MAX;
 
 public:	
 	// Called every frame

@@ -65,6 +65,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EnhancedInputComponent->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ATank::Move);
 		EnhancedInputComponent->BindAction(IA_Turn, ETriggerEvent::Triggered, this, &ATank::Turn);
 		EnhancedInputComponent->BindAction(IA_Fire, ETriggerEvent::Triggered, this, &ATank::Fire);
+		EnhancedInputComponent->BindAction(IA_AltFire, ETriggerEvent::Triggered, this, &ATank::FireSpecial);
+
 	}
 }
 

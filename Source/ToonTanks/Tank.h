@@ -65,6 +65,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	class UInputAction* IA_Fire;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	class UInputAction* IA_AltFire;
 
 	virtual void BeginPlay() override;
 };
