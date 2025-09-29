@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Projectile.h"
+#include "SpecialProjectile.h"
 #include "BasePawn.generated.h"
 
 
@@ -32,9 +33,6 @@ protected:
 	void FireSpecial();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
-	TSubclassOf<class AProjectile> SpecialProjectileClass;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	float SpecialCooldown = 2.f;
 
 
@@ -53,6 +51,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+    TSubclassOf<class AProjectile> SpecialProjectileClass;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	class UParticleSystem* DeathParticles;

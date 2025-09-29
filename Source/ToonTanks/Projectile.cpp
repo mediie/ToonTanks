@@ -26,6 +26,16 @@ AProjectile::AProjectile()
 	TrailParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Smoke Trail"));
 	TrailParticles->SetupAttachment(RootComponent);
 
+	
+	// Set collision profile to "Projectile" or a custom profile
+	ProjectileMesh->SetCollisionProfileName(TEXT("Projectile"));
+
+	// Ignore other projectiles (assuming they use the same object type)
+	ProjectileMesh->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Ignore); // Example: custom channel for projectiles
+
+	// Or, ignore itself (if using ECC_Pawn or ECC_PhysicsBody for projectiles)
+	ProjectileMesh->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
+
 }
 
 // Called when the game starts or when spawned

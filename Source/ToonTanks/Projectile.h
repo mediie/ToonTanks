@@ -20,11 +20,12 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(EditDefaultsOnly,Category = "Combat")
+	UStaticMeshComponent *ProjectileMesh;
 
 private:
 
-	UPROPERTY(EditDefaultsOnly,Category = "Combat")
-	UStaticMeshComponent *ProjectileMesh;
+	
 
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	class UProjectileMovementComponent *ProjectileMovementComponent;
@@ -38,7 +39,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	UParticleSystem* HitParticles;
 
-	UPROPERTY(EditAnywhere, Category = "Combat")
+	UPROPERTY(VisibleAnywhere, Category = "Combat")
 	class UParticleSystemComponent* TrailParticles;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")

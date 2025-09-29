@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Projectile.h"
+#include "SpecialProjectile.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystem.h"
 
@@ -80,8 +81,14 @@ void ABasePawn::FireSpecial()
 	const float Time = GetWorld()->GetTimeSeconds();
 	if (Time - LastSpecialFireTime < SpecialCooldown) return;
 
-	const FTransform SpawnTransform = ProjectileSpawnPoint->GetComponentTransform();
-	auto Projectile = GetWorld()->SpawnActor<AProjectile>(SpecialProjectileClass, SpawnTransform);
+	FVector Location = ProjectileSpawnPoint->GetComponentLocation();
+	FRotator Rotation = ProjectileSpawnPoint->GetComponentRotation();
+
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(SpecialProjectileClass, Location, Rotation);
+	if (Projectile)
+	{
+		Projectile->SetOwner(this);
+	}
 
 	LastSpecialFireTime = Time;
 }
