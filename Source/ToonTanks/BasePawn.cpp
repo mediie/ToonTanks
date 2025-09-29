@@ -63,12 +63,18 @@ void ABasePawn::RotateTurret(FVector LookAtTarget)
 
 void ABasePawn::Fire()
 {
+	
+	const float Time = GetWorld()->GetTimeSeconds();
+
+	if (Time - LastFireTime < PlayerCooldown) return;
+	
 	FVector Location = ProjectileSpawnPoint->GetComponentLocation();
 	FRotator Rotation = ProjectileSpawnPoint->GetComponentRotation();
 	
-
 	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
 	Projectile->SetOwner(this);
+
+	LastFireTime = Time;
 }
 
 void ABasePawn::FireSpecial()

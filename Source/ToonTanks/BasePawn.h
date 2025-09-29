@@ -34,6 +34,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	float SpecialCooldown = 2.f;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	float PlayerCooldown = 1.f;
 
 
 
@@ -65,6 +68,8 @@ private:
 	TSubclassOf<UCameraShakeBase> DeathCameraShakeClass;
 
 	float LastSpecialFireTime = -FLT_MAX;
+	float LastFireTime = -FLT_MAX;
+
 
 public:	
 	// Called every frame

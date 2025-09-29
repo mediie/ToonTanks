@@ -26,7 +26,7 @@ AProjectile::AProjectile()
 	TrailParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Smoke Trail"));
 	TrailParticles->SetupAttachment(RootComponent);
 
-	
+
 	// Set collision profile to "Projectile" or a custom profile
 	ProjectileMesh->SetCollisionProfileName(TEXT("Projectile"));
 

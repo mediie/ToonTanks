@@ -23,9 +23,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly,Category = "Combat")
 	UStaticMeshComponent *ProjectileMesh;
 
-private:
+	UPROPERTY(VisibleAnywhere, Category = "Combat")
+	UParticleSystemComponent* TrailParticles;
 
-	
+
+private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	class UProjectileMovementComponent *ProjectileMovementComponent;
@@ -39,8 +41,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	UParticleSystem* HitParticles;
 
-	UPROPERTY(VisibleAnywhere, Category = "Combat")
-	class UParticleSystemComponent* TrailParticles;
+
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	USoundBase* LaunchSound;
