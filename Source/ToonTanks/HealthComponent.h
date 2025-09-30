@@ -16,15 +16,24 @@ public:
 	// Sets default values for this component's properties
 	UHealthComponent();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+	float CurrentHealth = 100.f;
+
+	UFUNCTION(BlueprintPure, Category = "Health")
+	float GetCurrentHealth() const { return CurrentHealth; }
+
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	
+	
 
 private:
 
 	UPROPERTY(EditAnywhere)
 	float MaxHealth = 100.f;
-	float CurrentHealth = 0.f;
+	
 
 	UFUNCTION()
 	void DamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, class AController* Instigator, AActor* DamageCauser);
