@@ -37,12 +37,24 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (TankPlayerController)
+	FVector WorldOrigin, WorldDirection;
+	if (TankPlayerController && TankPlayerController->DeprojectMousePositionToWorld(WorldOrigin, WorldDirection))
 	{
-		FHitResult HitResult;
-		TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
-		
-		RotateTurret(HitResult.ImpactPoint);
+		const float TraceDist = 100000.f;
+		const FVector Start = WorldOrigin;
+		const FVector End = Start + WorldDirection * TraceDist;
+
+		FHitResult Hit;
+		FCollisionQueryParams Params(SCENE_QUERY_STAT(AimTrace), true);
+		Params.bReturnPhysicalMaterial = false;
+
+		Params.AddIgnoredActor(this);                
+		GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECollisionChannel::ECC_Visibility, Params);
+
+		if (Hit.bBlockingHit)
+		{
+			RotateTurret(Hit.ImpactPoint); 
+		}
 	}
 }
 
