@@ -24,6 +24,7 @@ SOFTWARE.
 
 Note: This license applies to the source code in the Source/ directory only.
 The assets in the Content/ directory (meshes, textures, audio, materials, etc.)
-are sourced from a third-party tutorial and are NOT covered by this license.
-Those assets may not be redistributed or used commercially without permission
-from their original authors.
+are Epic Games content and are NOT covered by this license. They are subject to
+the Unreal Engine End User License Agreement (https://www.unrealengine.com/eula/unreal)
+and the Epic Content License Agreement (https://www.unrealengine.com/eula/content).
+These assets may not be redistributed or sublicensed outside of Unreal Engine projects.
