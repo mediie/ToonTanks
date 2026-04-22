@@ -2,11 +2,14 @@
 
 A tank game built with Unreal Engine, initially following the GameDev.tv UE5 C++ course (up to commit `178cc90`), then extended with additional features.
 
-## Features added beyond the tutorial
+## Features added beyond the course
 - Special/alt fire ability
 - Player fire cooldown
 - HP bar UI for all actors
 - Hit-under-cursor collision query
+
+## Acknowledgments
+README written with the assistance of Claude Code to accurately reflect the implemented features.
 
 ## License
 
